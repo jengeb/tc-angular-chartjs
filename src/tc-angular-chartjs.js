@@ -120,7 +120,13 @@
               if ( exposeChart ) {
                 $scope.chart = chartObj;
               }
-              chartObj.resize();
+
+              // let browser render before resizing chart
+              setTimeout(function () {
+                if (chartObj) {
+                  chartObj.resize(chartObj.render, true);
+                }
+              });
             }
 
           },
